@@ -1,7 +1,9 @@
 import * as React from 'react';
 import Dialog from 'rc-dialog';
+import Slider from 'rc-slider';
 import { IPreview } from './types';
 import Icon from './components/Icon';
+import 'rc-slider/assets/index.css';
 
 import 'rc-dialog/assets/index.css';
 import './index.css';
@@ -34,7 +36,36 @@ const PreviewModal = (props: IPreview) => {
       >
         <div className="preview-image">
           <img src={imgUrl} alt="image" />
-          <div className="zoom-controller">zoom-controller</div>
+          <div className="zoom-controller">
+            <Icon
+              className="reset"
+              type="icon-preview-photo-filtercenterfocus"
+            />
+
+            <div className="zoom-slider">
+              <Icon type="icon-preview-photo-zoomout" />
+              <Slider
+                min={0.1}
+                defaultValue={1}
+                max={5}
+                step={0.1}
+                railStyle={{
+                  background: 'rgba(255,255,255,0.16)',
+                  height: 2,
+                }}
+                trackStyle={{ backgroundColor: '#338BFF', height: 2 }}
+                handleStyle={{
+                  backgroundColor: '#338BFF',
+                  opacity: 1,
+                  border: '3px solid #fff',
+                  height: 12,
+                  width: 12,
+                }}
+              />
+
+              <Icon type="icon-preview-photo-zoomin" />
+            </div>
+          </div>
         </div>
         <div className="left-count">
           <span className="left-count-index">2 </span>/ 20
@@ -61,6 +92,15 @@ const PreviewModal = (props: IPreview) => {
           </div>
         </div>
       </Dialog>
+      <div className="preview-close">
+        <Icon type="icon-preview-photo-close" />
+      </div>
+      <div className="photo-arrow photo-arrow-prev">
+        <Icon type="icon-preview-photo-arrow-left" />
+      </div>
+      <div className="photo-arrow photo-arrow-next">
+        <Icon type="icon-preview-photo-arrow-right" />
+      </div>
     </>
   );
 };
