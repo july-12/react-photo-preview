@@ -1,7 +1,138 @@
-.preview-photo-wrapper {
-  font-size: 16px;
+/* ============= dialog ============= */
+.preview-photo-wrapper .rc-dialog-content {
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 400;
+  background-color: unset;
 }
 
-.preview-photo-wrapper .rc-dialog-content {
-  font-size: 12px;
+.preview-photo-wrapper .rc-dialog-content .rc-dialog-body {
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .rc-dialog {
+    width: 800px;
+    margin: 60px auto;
+  }
+}
+
+/* ============= preview area ============= */
+.preview-photo-wrapper .preview-image {
+  position: relative;
+  height: 560px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.preview-photo-wrapper .preview-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: rgba(17, 161, 255, 0.2);
+}
+
+/* ============= preview area zoom ============= */
+.preview-photo-wrapper .preview-image .zoom-controller {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+
+  width: 190px;
+  height: 32px;
+
+  display: inline-flex;
+  align-items: center;
+
+  text-align: center;
+  background-color: rgba(41, 45, 50, 0.8);
+  box-shadow: 0 2px 8px 0 rgba(3, 9, 17, 0.3);
+  border-radius: 4px;
+}
+
+.preview-photo-wrapper .left-count {
+  font-family: PenroseRegular;
+  text-align: center;
+  margin: 12px 0;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 30px;
+  font-weight: 400;
+}
+
+.preview-photo-wrapper .left-count .left-count-index {
+  color: #ffffff;
+}
+
+.preview-photo-wrapper .description {
+  margin-bottom: 20px;
+}
+
+/* ============= navigator ============= */
+.preview-photo-wrapper .navigator {
+  position: relative;
+}
+.preview-photo-wrapper .navigator ul {
+  margin: 0;
+  padding: 3px 0;
+  list-style: none;
+  height: 70px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.navigator li {
+  width: 64px;
+  height: 100%;
+  margin-right: 18px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.navigator li:last-child {
+  margin-right: 0;
+}
+
+.navigator li.active {
+  outline: 3px solid #338bff;
+}
+
+.navigator li img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.navigator .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99;
+
+  width: 22px;
+  height: 34px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 2px 0 0 2px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigator .arrow:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.navigator .arrow .preview-icon {
+  transform: scale(1.5);
+}
+
+.navigator .arrow.prev-arrow {
+  left: 0;
+}
+.navigator .arrow.next-arrow {
+  right: 0;
 }

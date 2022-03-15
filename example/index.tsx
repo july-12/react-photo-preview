@@ -3,12 +3,18 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { PreviewContainer, IImgItem } from '../.';
 
+const imgUrl =
+  'https://panojson-oss.kujiale.com/pano/pano-editor/2022/03/14/MIXOCI5MDSYP4AABAAAAADY8.png?x-oss-process=image/format%2Cwebp';
+
 const App = () => {
-  const source: IImgItem[] = [
-    { id: '1', src: 'hahah' },
-    { id: '2', src: 'hahah' },
-    { id: '3', src: 'hahah' },
-  ];
+  let source: IImgItem[] = [];
+  for (let i = 0; i < 20; i++) {
+    source.push({
+      id: String(i + 1),
+      src: imgUrl,
+    });
+  }
+
   return (
     <div>
       <PreviewContainer sources={source}>

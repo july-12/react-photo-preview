@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "parcel index.html --no-cache -p 3001",
+    "start": "parcel index.html --no-cache -p 3002",
     "build": "parcel build index.html"
   },
   "dependencies": {
