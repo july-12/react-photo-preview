@@ -4,10 +4,11 @@ import { configStore } from './hooks/store';
 
 export const defaultValue: IStore = {
   currentIndex: 0,
+  visible: true,
+  sources: [],
   getCurrentImg() {
     return this.sources?.[this.currentIndex];
   },
-  sources: [],
 };
 
 export type TUpdateType<T> = React.Dispatch<React.SetStateAction<T>>;
@@ -26,7 +27,7 @@ export function createCtx(params?: Partial<IStore>) {
     return <ctx.Provider value={{ state, update }} {...props} />;
   }
 
-  configStore(ctx);
+  const useStore = configStore(ctx);
 
-  return [Provider] as const;
+  return [Provider, useStore] as const;
 }

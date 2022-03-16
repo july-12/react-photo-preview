@@ -17,4 +17,5 @@ export function useStore() {
 
 export function configStore(ctx: React.Context<TCtxState>) {
   currentCtx = ctx;
+  return useStore;
 }

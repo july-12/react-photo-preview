@@ -169,9 +169,17 @@
   box-shadow: unset !important;
 }
 
+.navigator-isolate {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 /* ============= close ============= */
 .preview-close {
   position: absolute;
+  top: 20px;
   right: 20px;
   z-index: 3000;
   background: rgba(0, 0, 0, 0.8);

@@ -19,9 +19,11 @@ export interface IStore {
   sources: IImgItem[];
   currentIndex: number;
   transform?: ITransform;
+  visible: boolean;
   getCurrentImg: () => IImgItem | undefined;
 }
 
+//========== context ============
 export type TUpdateType<T> = React.Dispatch<React.SetStateAction<T>>;
 export type TStoreUpdateType = TUpdateType<IStore>;
 
