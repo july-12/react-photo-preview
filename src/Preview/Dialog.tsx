@@ -6,15 +6,12 @@ import Desc from './Desc';
 import GalleryNavigator from './GalleryNavigator';
 import Navigator from './Navigator';
 
-import { IPreview } from '../types';
-
 import 'rc-dialog/assets/index.css';
 
 const DialogClassName = 'preview-photo-wrapper';
 
-const PreviewDialog = (props: IPreview) => {
+const PreviewDialog = () => {
   const [visible, setVisible] = React.useState(false);
-  console.log(props);
 
   const handleClose = () => {
     setVisible(false);

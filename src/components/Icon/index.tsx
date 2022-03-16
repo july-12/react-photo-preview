@@ -1,17 +1,23 @@
 import * as React from 'react';
 import './index.css';
 
-interface IProps {
+interface IProps extends React.SVGProps<SVGElement> {
   type: string;
-  className?: string;
 }
 
-const Icon = ({ type, className }: IProps) => {
+const Icon = React.forwardRef<SVGSVGElement, IProps>((props, ref) => {
+  const { children, type, className = '', ...restProps } = props;
+
   return (
-    <svg className={`preview-icon ${className || ''}`} aria-hidden="true">
-      <use xlinkHref={`#${type}`}></use>
+    <svg
+      {...restProps}
+      className={`preview-icon ${className}`}
+      aria-hidden="true"
+      ref={ref}
+    >
+      <use xlinkHref={`#${type}`} />
     </svg>
   );
-};
+});
 
 export default Icon;

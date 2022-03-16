@@ -1,17 +1,24 @@
 import * as React from 'react';
-import { IPreview } from './types';
-import { ctx, initializeStore } from './hooks';
+import { IPreviewProps } from './types';
+import { createCtx } from './context';
 
 import { PreviewDialog } from './Preview';
 
-const PreviewApp = (props: React.PropsWithChildren<IPreview>) => {
-  const { children, ...restProps } = props;
+const PreviewApp = (props: React.PropsWithChildren<IPreviewProps>) => {
+  const { children, sources, defaultCurrentIndex } = props;
+
+  const [Provider] = createCtx({ sources, currentIndex: defaultCurrentIndex });
+
   return (
-    <ctx.Provider value={initializeStore}>
-      <PreviewDialog {...restProps} />
-      {props.children}
-    </ctx.Provider>
+    <Provider>
+      <PreviewDialog />
+      {children}
+    </Provider>
   );
+};
+
+PreviewApp.defaultProps = {
+  defaultCurrentIndex: 0,
 };
 
 export default PreviewApp;

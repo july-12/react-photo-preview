@@ -1,17 +1,28 @@
 import * as React from 'react';
 import Icon from '../components/Icon';
+import { useStore } from '../hooks';
 
 const Navigator = () => {
+  const {
+    state: { currentIndex },
+    update,
+  } = useStore();
+  const handlePrev = React.useCallback(() => {
+    update({ currentIndex: currentIndex - 1 });
+  }, [currentIndex]);
+  const handleNext = React.useCallback(() => {
+    update({ currentIndex: currentIndex + 1 });
+  }, [currentIndex]);
   return (
     <>
       <div className="preview-close">
         <Icon type="icon-preview-photo-close" />
       </div>
       <div className="photo-arrow photo-arrow-prev">
-        <Icon type="icon-preview-photo-arrow-left" />
+        <Icon type="icon-preview-photo-arrow-left" onClick={handlePrev} />
       </div>
       <div className="photo-arrow photo-arrow-next">
-        <Icon type="icon-preview-photo-arrow-right" />
+        <Icon type="icon-preview-photo-arrow-right" onClick={handleNext} />
       </div>
     </>
   );

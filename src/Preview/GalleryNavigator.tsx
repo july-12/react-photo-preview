@@ -1,8 +1,15 @@
 import * as React from 'react';
 import Icon from '../components/Icon';
+import { useStore } from '../hooks';
 
 const GalleryNavigator = () => {
-  const sources: any[] = [];
+  const {
+    state: { sources, currentIndex },
+    update,
+  } = useStore();
+  const switchPicture = (index: number) => {
+    update({ currentIndex: index });
+  };
 
   return (
     <div className="navigator">
@@ -10,12 +17,16 @@ const GalleryNavigator = () => {
         <Icon type="icon-preview-photo-arrow-left" />
       </div>
       <ul>
-        {sources.map((item) => (
+        {sources?.map((item, index) => (
           <li
             key={item.id || item.src}
-            className={item.id === '3' ? 'active' : ''}
+            className={index === currentIndex ? 'active' : ''}
           >
-            <img src={item.src} alt={item.src} />
+            <img
+              src={item.src}
+              alt={item.src}
+              onClick={() => switchPicture(index)}
+            />
           </li>
         ))}
       </ul>
