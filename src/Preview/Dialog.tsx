@@ -35,10 +35,10 @@ const PreviewDialog = (props: DialogProps) => {
         maskClosable={false}
         {...props}
       >
+        <Navigator />
         <ViewBox />
         <Count />
         <Desc />
-        <Navigator />
         <GalleryNavigator />
       </Dialog>
     </>

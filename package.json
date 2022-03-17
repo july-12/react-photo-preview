@@ -74,6 +74,7 @@
   },
   "dependencies": {
     "rc-dialog": "^8.6.0",
-    "rc-slider": "^10.0.0-alpha.5"
+    "rc-slider": "^10.0.0-alpha.5",
+    "vanilla-js-wheel-zoom": "^6.10.1"
   }
 }

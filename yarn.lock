@@ -13170,6 +13170,11 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
+vanilla-js-wheel-zoom@^6.10.1:
+  version "6.10.1"
+  resolved "http://npm-registry.qunhequnhe.com/vanilla-js-wheel-zoom/-/vanilla-js-wheel-zoom-6.10.1.tgz#8a6950f5fdc46e46cfc87e82cd0881bf2fe10b86"
+  integrity sha512-XS0nONk3PfwHoFUauSSccPMFK+hU77WstUuGqMhnY+VSWiKPMLSRD596EkZs78zEZUEJ7xkTtzTYHtCqZ07ZVA==
+
 vary@~1.1.2:
   version "1.1.2"
   resolved "http://npm-registry.qunhequnhe.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
