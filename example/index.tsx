@@ -13,7 +13,7 @@ const imgUrl = [imgUrl1, imgUrl2, imgUrl3];
 
 const App = () => {
   let source: IImgItem[] = [];
-  const N = 8;
+  const N = 18;
   for (let i = 0; i < N; i++) {
     source.push({
       id: String(i + 1),

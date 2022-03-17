@@ -2,9 +2,18 @@ import * as React from 'react';
 import WZoom from 'vanilla-js-wheel-zoom';
 
 const extinction = 0.04;
-export function useZoom() {
+export function useZoom(): [
+  any,
+  React.MutableRefObject<HTMLDivElement | null>,
+  React.MutableRefObject<
+    | {
+        changeSlider: (val: number) => void;
+      }
+    | undefined
+  >
+] {
   const ref = React.useRef<HTMLDivElement | null>(null);
-  const zoomRef = React.useRef<any>(null);
+  const zoomRef = React.useRef<{ changeSlider: (val: number) => void }>();
   const [wzoom, setWZoom] = React.useState<any>();
 
   React.useEffect(() => {
@@ -34,7 +43,7 @@ export function useZoom() {
           }, 0);
         },
         rescale: function () {
-          zoomRef.current?.changeSlider?.(wzoom.content.currentScale);
+          zoomRef.current?.changeSlider(wzoom.content.currentScale);
         },
       });
     }

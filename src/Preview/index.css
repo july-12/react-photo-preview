@@ -117,7 +117,7 @@
   padding: 3px;
   list-style: none;
   height: 70px;
-  overflow: hidden;
+  overflow-x: scroll;
   white-space: nowrap;
 }
 
@@ -165,7 +165,7 @@
   align-items: center;
 }
 
-.navigator .arrow:hover {
+.navigator .arrow:not(.arrow-disabled):hover {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -178,6 +178,16 @@
 }
 .navigator .arrow.next-arrow {
   right: 0;
+}
+
+.navigator .arrow-disabled {
+  background-color: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+.navigator-noarrow .arrow {
+  display: none;
+  pointer-events: none;
 }
 
 .zoom-slider
