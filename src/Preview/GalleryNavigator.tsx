@@ -3,7 +3,7 @@ import Icon from '../components/Icon';
 import { useStore, useForceUpdate } from '../hooks';
 
 // 64: width of img, 18: margin gap
-const SCROLL_DISTANCE = (64 + 18) * 3;
+const SCROLL_DISTANCE = (64 + 18) * 10 - 18;
 const SCROLL_DELAY = 300;
 let timer: any;
 
@@ -37,19 +37,25 @@ const GalleryNavigator = () => {
     },
     [ref.current]
   );
-  const scrollPrev = React.useCallback(() => {
-    if (ref.current) {
-      let prevOffsetX = ref.current.scrollLeft - SCROLL_DISTANCE;
-      scrollTo(prevOffsetX);
-    }
-  }, [ref.current]);
+  const scrollPrev = React.useCallback(
+    (disabled) => {
+      if (!disabled && ref.current) {
+        let prevOffsetX = ref.current.scrollLeft - SCROLL_DISTANCE;
+        scrollTo(prevOffsetX);
+      }
+    },
+    [ref.current]
+  );
 
-  const scrollNext = React.useCallback(() => {
-    if (ref.current) {
-      let nextOffsetX = ref.current.scrollLeft + SCROLL_DISTANCE;
-      scrollTo(nextOffsetX);
-    }
-  }, [ref.current]);
+  const scrollNext = React.useCallback(
+    (disabled) => {
+      if (!disabled && ref.current) {
+        let nextOffsetX = ref.current.scrollLeft + SCROLL_DISTANCE;
+        scrollTo(nextOffsetX);
+      }
+    },
+    [ref.current]
+  );
 
   const shouldDisable = React.useCallback(
     (direction: 'prev' | 'next'): boolean => {
@@ -71,13 +77,15 @@ const GalleryNavigator = () => {
     }, SCROLL_DELAY);
   };
 
+  const shouldPrevDiabled = shouldDisable('prev');
+  const shouldNextDiabled = shouldDisable('next');
   return (
     <div className={`navigator ${isScrolling ? '' : 'navigator-noarrow'}`}>
       <div
         className={`arrow prev-arrow ${
-          shouldDisable('prev') ? 'arrow-disabled' : ''
+          shouldPrevDiabled ? 'arrow-disabled' : ''
         }`}
-        onClick={scrollPrev}
+        onClick={() => scrollPrev(shouldPrevDiabled)}
       >
         <Icon type="icon-preview-photo-arrow-left" />
       </div>
@@ -97,9 +105,9 @@ const GalleryNavigator = () => {
       </ul>
       <div
         className={`arrow next-arrow ${
-          shouldDisable('next') ? 'arrow-disabled' : ''
+          shouldNextDiabled ? 'arrow-disabled' : ''
         }`}
-        onClick={scrollNext}
+        onClick={() => scrollNext(shouldNextDiabled)}
       >
         <Icon type="icon-preview-photo-arrow-right" />
       </div>

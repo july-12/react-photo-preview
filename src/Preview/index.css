@@ -1,3 +1,11 @@
+.preview-photo-wrapper {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* ============= dialog ============= */
 .preview-photo-wrapper .rc-dialog-content {
   font-family: PingFangSC-Regular;
@@ -13,8 +21,8 @@
 
 @media (min-width: 768px) {
   .rc-dialog {
-    width: 800px;
-    margin: 60px auto;
+    width: 100%;
+    margin: unset;
   }
 }
 
@@ -22,7 +30,7 @@
 .preview-photo-wrapper .preview-image {
   position: relative;
   height: 560px;
-  background-color: rgba(0, 0, 0, 0.6);
+  /* background-color: rgba(0, 0, 0, 0.6); */
 }
 .preview-image .preview-image-box {
   display: flex;
@@ -33,7 +41,7 @@
   cursor: pointer;
   width: 100%;
   height: 100%;
-  background-color: rgba(17, 161, 255, 0.2);
+  /* background-color: rgba(17, 161, 255, 0.2); */
 }
 
 .preview-photo-wrapper .preview-image img {
@@ -117,7 +125,8 @@
   padding: 3px;
   list-style: none;
   height: 70px;
-  overflow-x: scroll;
+  overflow: hidden;
+  /* overflow-x: scroll; */
   white-space: nowrap;
 }
 
@@ -182,7 +191,6 @@
 
 .navigator .arrow-disabled {
   background-color: rgba(0, 0, 0, 0.1);
-  pointer-events: none;
 }
 
 .navigator-noarrow .arrow {
@@ -221,16 +229,23 @@
 /* ============= photo nav arrow ============= */
 .photo-arrow {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 50%;
+  height: 150px;
   z-index: 2000;
+  transform: translateY(-50%);
+  cursor: pointer;
 
   display: flex;
   align-items: center;
 }
 
-.photo-arrow:hover {
+.photo-arrow:not(.preview-arrow-disabled):hover {
   background: rgba(0, 0, 0, 0.1);
+}
+
+.preview-arrow-disabled .preview-icon {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .photo-arrow-prev {
@@ -251,7 +266,8 @@
   font-size: 2em;
   color: #aaa;
 }
-.photo-arrow:hover .preview-icon,
+
+.photo-arrow:not(.preview-arrow-disabled):hover .preview-icon,
 .preview-close:hover .preview-icon {
   color: #fff;
 }

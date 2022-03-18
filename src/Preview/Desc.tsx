@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { useStore } from '../hooks';
 
 const Desc = () => {
-  return (
-    <div className="description">
-      热点图片上限20张，允许热点图片在播放器上进行缩放和拖动，缩放范围：25%-500%；可拖动热点图片上限20张，允许热点图片在播放器上进行缩放和拖动，缩放范围：25%-500%；可拖动热点图片上限20张，允许热点图片在播放器上进行缩放和拖动，缩放范围：25%-500%；热点图片上限20张，允许热点图。
-    </div>
-  );
+  const { state } = useStore();
+  const currentImg = state.getCurrentImg();
+
+  return <div className="description">{currentImg?.desc}</div>;
 };
 
 export default Desc;
