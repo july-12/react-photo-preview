@@ -2,9 +2,9 @@ import * as React from 'react';
 import { IPreview } from './types';
 import { ctx, initializeStore } from './hooks';
 
-import { PreviewDialog } from './PreviewContainer';
+import { PreviewDialog } from './Preview';
 
-const PreviewContainer = (props: React.PropsWithChildren<IPreview>) => {
+const PreviewApp = (props: React.PropsWithChildren<IPreview>) => {
   const { children, ...restProps } = props;
   return (
     <ctx.Provider value={initializeStore}>
@@ -14,4 +14,4 @@ const PreviewContainer = (props: React.PropsWithChildren<IPreview>) => {
   );
 };
 
-export default PreviewContainer;
+export default PreviewApp;
