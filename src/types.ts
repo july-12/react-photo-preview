@@ -1,3 +1,4 @@
+import { DialogProps } from 'rc-dialog';
 export interface IImgItem {
   id?: string;
   title?: string;
@@ -5,10 +6,9 @@ export interface IImgItem {
   desc?: string;
 }
 
-export interface IPreviewProps {
+export interface IPreviewProps extends DialogProps {
   sources: IImgItem[];
   defaultCurrentIndex?: number;
-  visible?: boolean;
 }
 
 export interface ITransform {

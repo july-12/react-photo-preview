@@ -1,27 +1,19 @@
 import * as React from 'react';
+import { DialogProps } from 'rc-dialog';
 import Icon from '../components/Icon';
-import { useStore } from '../hooks';
+import { useStore, useKeyBinding } from '../hooks';
 
-const Navigator = () => {
-  const {
-    state: { currentIndex, sources },
-    update,
-  } = useStore();
+type IProps = Pick<DialogProps, 'onClose'>;
+const Navigator = (props: IProps) => {
+  const { update } = useStore();
 
-  const isFirstImg = currentIndex === 0;
-  const isLastImg = currentIndex === sources.length - 1;
+  const { isFirstImg, isLastImg, onPrev, onNext } = useKeyBinding();
 
-  const handlePrev = React.useCallback(() => {
-    update({ currentIndex: currentIndex - 1 });
-  }, [currentIndex]);
-
-  const handleNext = React.useCallback(() => {
-    update({ currentIndex: currentIndex + 1 });
-  }, [currentIndex]);
-
-  const handleClose = () => {
+  const handleClose = (e: React.SyntheticEvent<Element, Event>) => {
     update({ visible: false });
+    props.onClose?.(e);
   };
+
   return (
     <div className="navigator-isolate">
       <div className="preview-close">
@@ -31,7 +23,7 @@ const Navigator = () => {
         className={`photo-arrow photo-arrow-prev ${
           isFirstImg ? 'preview-arrow-disabled' : ''
         }`}
-        onClick={handlePrev}
+        onClick={onPrev}
       >
         <Icon type="icon-preview-photo-arrow-left" />
       </div>
@@ -39,7 +31,7 @@ const Navigator = () => {
         className={`photo-arrow photo-arrow-next ${
           isLastImg ? 'preview-arrow-disabled' : ''
         }`}
-        onClick={handleNext}
+        onClick={onNext}
       >
         <Icon type="icon-preview-photo-arrow-right" />
       </div>

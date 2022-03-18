@@ -15,19 +15,15 @@ const DialogClassName = 'preview-photo-wrapper';
 
 const PreviewDialog = (props: DialogProps) => {
   const {
-    state: { visible },
-    update,
+    state: { sources, visible },
   } = useStore();
 
-  const handleClose = () => {
-    update({ visible: false });
-  };
+  const needNavigator = sources?.length > 1;
 
   return (
     <>
       <Dialog
         className={DialogClassName}
-        onClose={handleClose}
         visible={visible}
         bodyStyle={{ width: 800 }}
         maskStyle={{ backgroundColor: 'rgba(0,0,0,0.80)' }}
@@ -35,11 +31,13 @@ const PreviewDialog = (props: DialogProps) => {
         maskClosable={false}
         {...props}
       >
-        <Navigator />
+        {needNavigator && !props.closable && (
+          <Navigator onClose={props.onClose} />
+        )}
         <ViewBox />
-        <Count />
+        {needNavigator && <Count />}
         <Desc />
-        <GalleryNavigator />
+        {needNavigator && <GalleryNavigator />}
       </Dialog>
     </>
   );

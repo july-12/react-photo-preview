@@ -16,6 +16,16 @@ export function useZoom(): [
   const zoomRef = React.useRef<{ changeSlider: (val: number) => void }>();
   const [wzoom, setWZoom] = React.useState<any>();
 
+  const resetZoom = React.useCallback(
+    (wz) => {
+      if (wz) {
+        wz._zoom(1);
+        !wzoom && setWZoom(wz);
+      }
+    },
+    [wzoom]
+  );
+
   React.useEffect(() => {
     if (ref.current && !wzoom) {
       let el = ref.current;
@@ -35,12 +45,13 @@ export function useZoom(): [
         speed: 4,
         zoomOnClick: false,
         prepare: function () {
-          setTimeout(() => {
-            if (wzoom) {
-              wzoom._zoom(1);
-              setWZoom(wzoom);
-            }
-          }, 0);
+          if (wzoom) {
+            resetZoom(wzoom);
+          } else {
+            setTimeout(() => {
+              resetZoom(wzoom);
+            }, 0);
+          }
         },
         rescale: function () {
           zoomRef.current?.changeSlider(wzoom.content.currentScale);

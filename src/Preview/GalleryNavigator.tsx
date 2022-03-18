@@ -3,7 +3,7 @@ import Icon from '../components/Icon';
 import { useStore, useForceUpdate } from '../hooks';
 
 // 64: width of img, 18: margin gap
-const SCROLL_DISTANCE = (64 + 18) * 10 - 18;
+const SCROLL_DISTANCE = (64 + 18) * 10;
 const SCROLL_DELAY = 300;
 let timer: any;
 

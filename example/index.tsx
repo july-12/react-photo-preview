@@ -1,14 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { PreviewContainer, IImgItem } from '../.';
-
-const imgUrl1 =
-  'https://panojson-oss.kujiale.com/pano/pano-editor/2022/03/14/MIXOCI5MDSYP4AABAAAAADY8.png?x-oss-process=image/format%2Cwebp';
-const imgUrl2 =
-  'https://panojson-oss.kujiale.com/pano/pano-editor/2022/03/14/MIXOCI5MDSYP4AABAAAAABY8.png?x-oss-process=image/format%2Cwebp';
-const imgUrl3 =
-  'https://panojson-oss.kujiale.com/pano/pano-editor/2022/01/10/MHN6OWVMDSK2UAABAAAAAEA8.png?x-oss-process=image/format%2Cwebp';
+import { PhotoPreview, IImgItem } from '../.';
 
 const imgWebUrl1 =
   'https://react-photo-view.vercel.app/_next/static/media/1.c788857d.jpg';
@@ -24,33 +17,57 @@ const imgWebUrl6 =
   'https://react-photo-view.vercel.app/_next/static/media/6.0271162c.jpg';
 
 const imgUrl = [
-  imgUrl1,
-  imgUrl2,
-  imgUrl3,
+  imgWebUrl3,
   imgWebUrl1,
   imgWebUrl2,
-  imgWebUrl3,
   imgWebUrl4,
   imgWebUrl5,
   imgWebUrl6,
 ];
 
+const dis = [
+  'description of picture',
+  'Sint velit eveniet. Rerum atque repellat voluptatem quia rerum. Numquam exceptur beatae sint laudantium consequatur. Magni occaecati itaque sint et sit tempore. Nesciunt amet quidem. Iusto deleniti cum autem ad quia aperiam.',
+  'A consectetur quos aliquam. In iste aliquid et aut similique suscipit.',
+];
 const App = () => {
+  let [isSingle, setIsSingle] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
   let source: IImgItem[] = [];
-  const N = 18;
+  const N = 28;
   for (let i = 0; i < N; i++) {
     source.push({
       id: String(i + 1),
       src: imgUrl[i % imgUrl.length],
-      desc: 'hello 哈就范德萨',
+      desc: dis[i % 3],
     });
   }
 
+  const handleSwitch = () => {
+    setIsSingle(!isSingle);
+  };
+
   return (
     <div>
-      <PreviewContainer sources={source}>
-        <div>show</div>
-      </PreviewContainer>
+      {visible && (
+        <button
+          style={{ position: 'fixed', top: 60, zIndex: 10000 }}
+          onClick={handleSwitch}
+        >
+          切换单/多图模式
+        </button>
+      )}
+
+      <PhotoPreview
+        sources={isSingle ? source.slice(0, 1) : source}
+        visible={visible}
+        onClose={() => {
+          console.log('close...');
+          setVisible(false);
+        }}
+      >
+        <button onClick={() => setVisible(true)}>open</button>
+      </PhotoPreview>
     </div>
   );
 };

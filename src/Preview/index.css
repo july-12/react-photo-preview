@@ -36,7 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  /* overflow: hidden; */
 
   cursor: pointer;
   width: 100%;
@@ -63,11 +63,21 @@
   display: inline-flex;
   align-items: center;
 
+  opacity: 0;
+  transition: opacity 1s;
+  transition-delay: 1s;
+
   text-align: center;
   background-color: rgba(41, 45, 50, 0.8);
   box-shadow: 0 2px 8px 0 rgba(3, 9, 17, 0.3);
   border-radius: 4px;
   padding: 0 4px;
+}
+
+.preview-photo-wrapper .preview-image:hover .zoom-controller {
+  opacity: 1;
+  transition: opacity 1s;
+  transition-delay: 1s;
 }
 
 .zoom-controller .preview-icon {
@@ -104,6 +114,7 @@
   color: rgba(255, 255, 255, 0.4);
   line-height: 30px;
   font-weight: 400;
+  position: relative;
 }
 
 .preview-photo-wrapper .left-count .left-count-index {
@@ -112,6 +123,8 @@
 
 .preview-photo-wrapper .description {
   margin-bottom: 20px;
+  position: relative;
+  height: 60px;
 }
 
 /* ============= navigator ============= */
@@ -243,7 +256,7 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
-.preview-arrow-disabled .preview-icon {
+.preview-arrow-disabled {
   pointer-events: none;
   opacity: 0.5;
 }
