@@ -37,6 +37,7 @@
   },
   "name": "react-phone-preview",
   "author": "Faith Tan",
+  "homepage": "https://github.com/july-12/react-photo-preview",
   "module": "dist/react-phone-preview.esm.js",
   "size-limit": [
     {
